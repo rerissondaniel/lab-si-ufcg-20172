@@ -1,1 +1,1 @@
-angular.module("labsi", ["ui.router", "ngMessages"]);
+angular.module("labsi", ["ui.router", "ngMessages", "ui.validate"]);

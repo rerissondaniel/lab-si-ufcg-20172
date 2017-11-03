@@ -6,6 +6,6 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
         url: "/artists",
         templateUrl: "app/components/artists/artists.html",
         controller: "ArtistsCtrl",
-        controllerAs: "artists"
+        controllerAs: "vm"
     });
 });
