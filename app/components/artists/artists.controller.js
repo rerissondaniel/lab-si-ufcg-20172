@@ -1,5 +1,6 @@
 angular.module("labsi").controller("ArtistsCtrl", ["ArtistsService", function(artistsService){
 	var self = this;
+
 	self.artists = artistsService.getArtists();
 
 	self.addArtist = function(artist){
@@ -10,10 +11,11 @@ angular.module("labsi").controller("ArtistsCtrl", ["ArtistsService", function(ar
 
 	function _cleanArtistForm(){
         self.artist = {};
-        self.newArtistForm.$setPristine();
+        //noinspection JSUnresolvedVariable
+        self.artistForm.$setPristine();
 	}
 
-    self.isNameNotRegistered = function(name){
+    self.isNameAvailable = function(name){
 		var artistWithName = self.artists.find(function(artist){
 			return name === artist.name;
 		});

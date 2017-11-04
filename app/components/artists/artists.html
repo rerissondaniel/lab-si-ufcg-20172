@@ -1,36 +1,35 @@
-<form name="vm.newArtistForm">
+<form name="vm.artistForm">
     <div class="form-group">
         <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
-               ng-model="vm.artist.name" ui-validate="{registeredName: 'vm.isNameNotRegistered($value)'}" required/>
+               ng-model="vm.artist.name" ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
         <input class="form-control" placeholder="Imagem" type="text" name="image" id="image"
                ng-model="vm.artist.image"/>
 
-        <section class="validation-box" ng-messages="vm.newArtistForm.name.$error"
-                 ng-show="vm.newArtistForm.name.$dirty">
+        <section class="validation-box" ng-messages="vm.artistForm.name.$error"
+                 ng-show="vm.artistForm.name.$dirty">
             <div ng-message="required" class="alert alert-danger validation-message">
                 O nome não pode ser vazio
             </div>
 
-            <div ng-message="registeredName" class="alert alert-danger validation-message">
+            <div ng-message="availableName" class="alert alert-danger validation-message">
                 Artista já cadastrado
             </div>
         </section>
 
-        <button class="btn btn-primary btn-block" ng-disabled="vm.newArtistForm.$invalid" id="btn.add.artist" ng-click="vm.addArtist(vm.artist)">Adicionar
-            Artista
+        <button class="btn btn-primary btn-block" ng-disabled="vm.artistForm.$invalid" id="btn.add.artist"
+                ng-click="vm.addArtist(vm.artist)">Adicionar Artista
         </button>
 
     </div>
 </form>
 <table class="table table-striped">
     <thead>
-    <th>Nome</th>
-    <th>Imagem</th>
+        <th>Nome</th>
+        <th>Imagem</th>
     </thead>
     <tbody ng-repeat="artist in vm.artists">
-    {{artist}}
-    <td>{{artist.name}}</td>
-    <td>{{artist.image}}</td>
+        <td>{{artist.name}}</td>
+        <td><a href="{{artist.image}}" target="_blank">imagem</a></td>
     </tbody>
 </table>
 </div>
