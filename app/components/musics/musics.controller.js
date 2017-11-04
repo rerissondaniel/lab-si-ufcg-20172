@@ -1,9 +1,10 @@
-angular.module("labsi").controller("MusicsCtrl", ["MusicsService", function (musicsService) {
+angular.module("labsi").controller("MusicsCtrl", ["MusicsService", "ArtistsService", function (musicsService, artistsService) {
     var self = this;
 
     self.musics = musicsService.getMusics();
+    self.artists = artistsService.getArtists();
 
-    self.addMusic = function(music){
+    self.addMusic = function (music) {
         musicsService.addMusic(music);
         _resetMusicForm();
         self.musics = musicsService.getMusics();
@@ -17,7 +18,7 @@ angular.module("labsi").controller("MusicsCtrl", ["MusicsService", function (mus
         return !musicstWithName;
     };
 
-    function _resetMusicForm(){
+    function _resetMusicForm() {
         self.music = {};
         //noinspection JSUnresolvedVariable
         self.musicForm.$setPristine();

@@ -2,8 +2,12 @@
     <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
            ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album)'}"
            required/>
-    <input class="form-control" placeholder="Artista" type="text" name="artist" id="artist"
-           ng-model="vm.music.artist" required/>
+
+    <select class="form-control" ng-model="vm.music.artist"
+            ng-options="artist.name for artist in vm.artists | orderBy:'+name'" required>
+        <option value="">Selecione um artista</option>
+    </select>
+
     <input class="form-control" placeholder="Álbum" type="text" name="album" id="album"
            ng-model="vm.music.album" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"
            required/>
@@ -63,17 +67,17 @@
 
 <table class="table table-striped">
     <thead>
-    <th>Nome</th>
-    <th>Artista</th>
-    <th>Álbum</th>
-    <th>Ano de lançamento</th>
-    <th>Duração</th>
+        <th>Nome</th>
+        <th>Artista</th>
+        <th>Álbum</th>
+        <th>Ano de lançamento</th>
+        <th>Duração</th>
     </thead>
     <tbody ng-repeat="music in vm.musics">
-    <td>{{music.name}}</td>
-    <td>{{music.artist}}</td>
-    <td>{{music.album}}</td>
-    <td>{{music.releaseYear}}</td>
-    <td>{{music.duration}}</td>
+        <td>{{music.name}}</td>
+        <td>{{music.artist}}</td>
+        <td>{{music.album}}</td>
+        <td>{{music.releaseYear}}</td>
+        <td>{{music.duration}}</td>
     </tbody>
 </table>
