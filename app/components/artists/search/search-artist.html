@@ -10,13 +10,54 @@
         </thead>
         <tbody ng-repeat="artist in vm.artists | filter:{name : vm.searchCriteria}">
         <td><a ui-sref="artist.show({name: artist.name})">{{artist.name}}</a></td>
-            <td>
-                <a href="{{artist.image}}" target="_blank" ng-if="artist.image">link</a>
-                <span ng-if="!artist.image">-</span>
-            </td>
-            <td>
-                <input type="checkbox" ng-model="artist.favorite" ng-change="vm.updateArtist(artist)"/>
-            </td>
+        <td>
+            <a href="{{artist.image}}" target="_blank" ng-if="artist.image">link</a>
+            <span ng-if="!artist.image">-</span>
+        </td>
+        <td>
+            <input type="checkbox"
+                   ng-model="artist.favorite"
+                   ng-change="vm.confirmUpdate(artist)"/>
+        </td>
         </tbody>
     </table>
 </section>
+
+<div class="modal fade" id="modal-disfavor" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tem certeza?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente desfavoritar este artista?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primay" data-dismiss="modal">Sim</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="modal-favorite" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tem certeza?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente favoritar este artista?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
