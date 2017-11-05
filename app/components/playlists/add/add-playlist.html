@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="form-group">
+        <input type="text" class="form-control" ng-model="vm.playlist.name" placeholder="Nome da playlist"/>
+    </div>
+    <button class="btn btn-primary col-sm-3 float-right" ng-click="vm.addPlaylist(vm.playlist)">Adicionar playlist
+    </button>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <th>Playlist</th>
+            </thead>
+            <tbody ng-repeat="playlist in vm.playlists">
+            <td><a ui-sref="playlist.show(playlist.name)">{{playlist.name}}</a></td>
+            </tbody>
+        </table>
+    </div>
+</div>

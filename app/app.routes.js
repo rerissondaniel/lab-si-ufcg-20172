@@ -30,6 +30,7 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "app/components/artists/show/show-artist.html"
         })
 
+
         .state("music", {
             url: "/music",
             abstract: true,
@@ -40,5 +41,25 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
         .state("music.add", {
             url: "/add",
             templateUrl: "app/components/musics/add/add-music.html"
+        })
+
+
+        .state("playlist", {
+            url: "/playlist",
+            abstract: true
+        })
+
+        .state("playlist.add", {
+            url: "/add",
+            controller: "AddPlaylistCtrl",
+            controllerAs: "vm",
+            templateUrl: "app/components/playlists/add/add-playlist.html"
+        })
+
+        .state("playlist.show", {
+            url: "/show",
+            controller: "ShowPlaylistCtrl",
+            controllerAs: "vm",
+            templateUrl: "app/componentes/playlists/show/show-playlist.html"
         });
 });

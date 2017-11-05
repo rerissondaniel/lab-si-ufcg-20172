@@ -11,6 +11,8 @@
     <script src="node_modules/angular-messages/angular-messages.js"></script>
     <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
 
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+
     <script type="text/javascript" src="node_modules/angular-ui-mask/dist/mask.js"></script>
 
     <script type="text/javascript" src="node_modules/angular-ui-validate/dist/validate.js"></script>
@@ -18,19 +20,23 @@
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
 
+    <script src="app/services/artists.service.js"></script>
     <script src="app/components/artists/add/add-artist.controller.js"></script>
     <script src="app/components/artists/search/search-artist.controller.js"></script>
     <script src="app/components/artists/show/show-artist.controller.js"></script>
-    <script src="app/services/artists.service.js"></script>
 
-    <script src="app/components/musics/add/add-music.controller.js"></script>
     <script src="app/services/musics.service.js"></script>
+    <script src="app/components/musics/add/add-music.controller.js"></script>
+
+    <script src="app/services/playlists.service.js"></script>
+    <script src="app/components/playlists/add/add-playlist.controller.js"></script>
+
 
     <meta charset="utf-8">
 
     <title>1º Lab Sistemas de Informação 20172.2</title>
 </head>
 <body ng-app="labsi">
-    <div ui-view></div>
+<div ui-view></div>
 </body>
 </html>
