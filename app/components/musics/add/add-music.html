@@ -1,19 +1,21 @@
-<form name="vm.musicForm">
+<form name="vm.musicForm" class="container">
     <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
-           ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album)'}"
+           ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album.name)'}"
+           ui-validate-watch="'vm.music.album.name'"
            required/>
 
-    <select class="form-control" ng-model="vm.music.artist"
+    <select class="form-control" name="artist" ng-model="vm.music.artist"
             ng-options="artist.name for artist in vm.artists | orderBy:'+name'" required>
         <option value="">Selecione um artista</option>
     </select>
 
     <input class="form-control" placeholder="Álbum" type="text" name="album" id="album"
-           ng-model="vm.music.album" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"
+           ng-model="vm.music.album.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"
+           ui-validate-watch="'vm.music.name'"
            required/>
     <input class="form-control" placeholder="Ano de lançamento" type="year" name="releaseYear" id="releaseYear"
            ng-model="vm.music.releaseYear" ui-mask="9999" ui-mask-placeholder ui-mask-placeholder-char="A" required/>
-    <input class="form-control" placeholder="Duration" type="text" name="duration" id="duration"
+    <input class="form-control" placeholder="Duração" type="text" name="duration" id="duration"
            ng-model="vm.music.duration" ui-mask="(99):(99) min" ui-mask-placeholder ui-mask-placeholder-char="_"
            required/>
 
@@ -64,20 +66,19 @@
             ng-click="vm.addMusic(vm.music)">Adicionar Música
     </button>
 </form>
-
-<table class="table table-striped">
-    <thead>
-        <th>Nome</th>
-        <th>Artista</th>
-        <th>Álbum</th>
-        <th>Ano de lançamento</th>
-        <th>Duração</th>
-    </thead>
-    <tbody ng-repeat="music in vm.musics">
-        <td>{{music.name}}</td>
-        <td>{{music.artist}}</td>
-        <td>{{music.album}}</td>
-        <td>{{music.releaseYear}}</td>
-        <td>{{music.duration}}</td>
-    </tbody>
-</table>
+<!--<table class="table table-striped">-->
+    <!--<thead>-->
+        <!--<th>Nome</th>-->
+        <!--<th>Artista</th>-->
+        <!--<th>Álbum</th>-->
+        <!--<th>Ano de lançamento</th>-->
+        <!--<th>Duração</th>-->
+    <!--</thead>-->
+    <!--<tbody ng-repeat="music in vm.musics">-->
+        <!--<td>{{music.name}}</td>-->
+        <!--<td>{{music.artist}}</td>-->
+        <!--<td>{{music.album}}</td>-->
+        <!--<td>{{music.releaseYear}}</td>-->
+        <!--<td>{{music.duration}}</td>-->
+    <!--</tbody>-->
+<!--</table>-->

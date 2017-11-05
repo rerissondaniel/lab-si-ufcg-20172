@@ -11,11 +11,11 @@ angular.module("labsi").controller("MusicsCtrl", ["MusicsService", "ArtistsServi
     };
 
     self.isMusicAvailable = function (name, album) {
-        var musicstWithName = self.musics.find(function (music) {
-            return name === music.name && album === music.album;
+        var musicsWithName = self.musics.find(function (music) {
+            return name === music.name && album === music.album.name;
         });
 
-        return !musicstWithName;
+        return !musicsWithName;
     };
 
     function _resetMusicForm() {

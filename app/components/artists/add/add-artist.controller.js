@@ -1,4 +1,4 @@
-angular.module("labsi").controller("ArtistsCtrl", ["ArtistsService", function (artistsService) {
+angular.module("labsi").controller("AddArtistsCtrl", ["ArtistsService", function (artistsService) {
     var self = this;
 
     self.artists = artistsService.getArtists();
