@@ -1,32 +1,30 @@
 <section class="add-artist container">
     <form name="vm.artistForm">
-        <div class="form-group">
-            <div class="form-group row">
-                <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
-                       ng-model="vm.artist.name" ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
-            </div>
-            <div class="form-group row">
-                <input class="form-control" placeholder="Imagem" type="text" name="image" id="image"
-                       ng-model="vm.artist.image"/>
-            </div>
-
-            <section class="validation-box row" ng-messages="vm.artistForm.name.$error"
-                     ng-show="vm.artistForm.name.$dirty">
-                <div ng-message="required" class="alert alert-danger col-lg-12">
-                    O nome não pode ser vazio
-                </div>
-
-                <div ng-message="availableName" class="alert alert-danger col-lg-12">
-                    Artista já cadastrado
-                </div>
-            </section>
-
-            <div class="form-group row">
-                <button class="btn btn-primary btn-block " ng-disabled="vm.artistForm.$invalid" id="btn.add.artist"
-                        ng-click="vm.addArtist(vm.artist)">Adicionar Artista
-                </button>
-            </div>
-
+        <div class="form-group row">
+            <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
+                    ng-model="vm.artist.name" ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
         </div>
+        <div class="form-group row">
+            <input class="form-control" placeholder="Imagem" type="text" name="image" id="image"
+                    ng-model="vm.artist.image"/>
+        </div>
+
+        <section ng-messages="vm.artistForm.name.$error"
+                    ng-show="vm.artistForm.name.$dirty">
+            <div ng-message="required" class="alert alert-danger col-lg-12">
+                O nome não pode ser vazio
+            </div>
+
+            <div ng-message="availableName" class="alert alert-danger col-lg-12">
+                Artista já cadastrado
+            </div>
+        </section>
+
+        <div class="form-group row">
+            <button class="btn btn-primary btn-block " ng-disabled="vm.artistForm.$invalid" id="btn.add.artist"
+                    ng-click="vm.addArtist(vm.artist)">Adicionar Artista
+            </button>
+        </div>
+
     </form>
 </section>

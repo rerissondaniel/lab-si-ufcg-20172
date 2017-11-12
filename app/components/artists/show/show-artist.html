@@ -4,16 +4,19 @@
         <input type="text" readonly class="form-control col-sm-10" id="name" name="name"
                ng-value="vm.artist.name"/>
     </div>
+    
     <div class="form-group row">
         <label for="image" class="col-sm-2 col-form-label"> Imagem: </label>
         <input type="text" readonly class="form-control col-sm-10" id="image" name="image"
                ng-value="vm.artist.image"/>
     </div>
+
     <div class="form-group row">
-        <label for="rating" class="col-sm-2 col-form-label"> Rating: </label>
+        <label for="rating" class="col-sm-2 col-form-label"> Nota: </label>
         <input type="text" class="form-control col-sm-10" id="rating" name="rating"
                ng-model="vm.artist.rating"/>
     </div>
+    
     <div class="form-group row">
         <label for="lastListened" class="col-sm-2 col-form-label"> Última música ouvida: </label>
         <select id="lastListened" class="form-control col-sm-10" name="artist" ng-model="vm.artist.lastListened"
@@ -30,8 +33,10 @@
             Álbuns
         </th>
         </thead>
-        <tbody ng-repeat="album in vm.albuns">
-        <td>{{album.name}}</td>
+        <tbody>
+            <tr ng-repeat="album in vm.albuns">
+                <td>{{album.name}}</td>
+            </tr>
         </tbody>
     </table>
 </div>

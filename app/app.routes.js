@@ -57,9 +57,9 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state("playlist.show", {
-            url: "/show",
+            url: "/show?name",
             controller: "ShowPlaylistCtrl",
             controllerAs: "vm",
-            templateUrl: "app/componentes/playlists/show/show-playlist.html"
+            templateUrl: "app/components/playlists/show/show-playlist.html"
         });
 });

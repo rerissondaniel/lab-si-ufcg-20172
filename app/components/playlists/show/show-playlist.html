@@ -4,11 +4,50 @@
         <input type="text" readonly class="form-control col-sm-10" id="name" name="name"
                ng-value="vm.playlist.name"/>
     </div>
-    <div>
+    <div class="row" ng-show="vm.playlist.musics.length > 0">
+        <h3>Músicas na playlist</h3>
         <table class="table table-striped">
             <thead>
-            
+                <th>Nome</th>
+                <th>Artista</th>
+                <th>Álbum</th>
+                <th>Ano de lançamento</th>
+                <th>Duração</th>
+                <th></th>
             </thead>
+            <tbody>
+                <tr ng-repeat="music in vm.playlist.musics">
+                    <td>{{music.name}}</td>
+                    <td>{{music.artist.name}}</td>
+                    <td>{{music.album.name}}</td>
+                    <td>{{music.releaseYear}}</td>
+                    <td>{{music.duration}}</td>
+                    <td><button class="btn btn-primary" ng-click="vm.removeFromPlaylist(vm.playlist, music)">remover</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" ng-show="vm.availableMusics.length > 0">
+        <h3>Músicas fora da playlist</h3>
+        <table class="table table-striped">
+            <thead>
+                <th>Nome</th>
+                <th>Artista</th>
+                <th>Álbum</th>
+                <th>Ano de lançamento</th>
+                <th>Duração</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="music in vm.availableMusics">
+                    <td>{{music.name}}</td>
+                    <td>{{music.artist.name}}</td>
+                    <td>{{music.album.name}}</td>
+                    <td>{{music.releaseYear}}</td>
+                    <td>{{music.duration}}</td>
+                    <td><button class="btn btn-primary" ng-click="vm.addToPlaylist(vm.playlist, music)">adicionar</button></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

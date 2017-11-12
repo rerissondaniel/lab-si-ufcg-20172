@@ -1,21 +1,22 @@
 angular.module("labsi").service("MusicsService", [function () {
     var _musics = [];
+    var self = this;
 
-    this.addMusic = function (music) {
+    self.addMusic = function (music) {
         _musics.push(music);
     };
 
-    this.getMusics = function () {
+    self.getMusics = function () {
         return angular.copy(_musics);
     };
 
-    this.getMusicsByArtist = function (artistName) {
+    self.getMusicsByArtist = function (artistName) {
         return _musics.filter(function (music) {
             return music.artist.name === artistName;
         });
     };
 
-    this.getAlbunsByArtist = function (artistName) {
+    self.getAlbunsByArtist = function (artistName) {
         var artistMusics = _musics.filter(function (music) {
             return music.artist.name === artistName;
         });
@@ -28,8 +29,9 @@ angular.module("labsi").service("MusicsService", [function () {
     };
 
     function _removeDuplicates(array) {
-        return array.filter(function (value, index, self) {
-            return self.indexOf(value) === index;
+        var seen = {};
+        return array.filter(function(album) {
+            return seen.hasOwnProperty(album.name) ? false : (seen[album.name] = true);
         });
     }
 }]);
