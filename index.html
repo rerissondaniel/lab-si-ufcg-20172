@@ -17,6 +17,8 @@
 
     <script type="text/javascript" src="node_modules/angular-ui-validate/dist/validate.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="assets/app.css">
+
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
 
@@ -38,6 +40,7 @@
     <title>1º Lab Sistemas de Informação 20172.2</title>
 </head>
 <body ng-app="labsi">
-<div ui-view></div>
+    <div ng-include="'app/components/header/header.html'"></div>
+    <div class="main-container" ui-view></div>
 </body>
 </html>

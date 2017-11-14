@@ -3,12 +3,15 @@
         <div class="form-group">
             <input type="text" class="form-control" ng-model="vm.playlist.name" 
             placeholder="Nome da playlist" id="playlistName" name="playlistName"
-            ui-validate="{availableName: 'vm.isNameAvailable($value)'}"/>
+            ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
         </div>
 
-        <section ng-messages="vm.playlistForm.playlistName.$error">
+        <section ng-messages="vm.playlistForm.playlistName.$error" ng-show="vm.playlistForm.playlistName.$dirty">
             <div ng-message="availableName" class="alert alert-danger validation-message">
                 Playlist já cadastrada
+            </div>
+            <div ng-message="required" class="alert alert-danger validation-message">
+                Nome obrigatório
             </div>
         </section>
 
@@ -18,7 +21,9 @@
 
     <table class="table table-striped" ng-show="vm.playlists.length > 0">
         <thead>
-        <th>Playlist</th>
+            <tr>
+                <th>Playlist</th>
+            </tr>
         </thead>
         <tbody>
             <tr ng-repeat="playlist in vm.playlists">

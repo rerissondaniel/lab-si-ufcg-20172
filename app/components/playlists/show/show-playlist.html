@@ -5,15 +5,16 @@
                ng-value="vm.playlist.name"/>
     </div>
     <div class="row" ng-show="vm.playlist.musics.length > 0">
-        <h3>Músicas na playlist</h3>
+        <h4>Músicas na playlist</h4>
         <table class="table table-striped">
             <thead>
-                <th>Nome</th>
-                <th>Artista</th>
-                <th>Álbum</th>
-                <th>Ano de lançamento</th>
-                <th>Duração</th>
-                <th></th>
+                <tr>
+                    <th>Nome</th>
+                    <th>Artista</th>
+                    <th>Álbum</th>
+                    <th>Ano de lançamento</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="music in vm.playlist.musics">
@@ -21,21 +22,19 @@
                     <td>{{music.artist.name}}</td>
                     <td>{{music.album.name}}</td>
                     <td>{{music.releaseYear}}</td>
-                    <td>{{music.duration}}</td>
-                    <td><button class="btn btn-primary" ng-click="vm.removeFromPlaylist(vm.playlist, music)">remover</button></td>
+                    <td><button class="btn btn-danger" ng-click="vm.removeFromPlaylist(vm.playlist, music)">remover</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="row" ng-show="vm.availableMusics.length > 0">
-        <h3>Músicas fora da playlist</h3>
+        <h4>Músicas fora da playlist</h4>
         <table class="table table-striped">
             <thead>
                 <th>Nome</th>
                 <th>Artista</th>
                 <th>Álbum</th>
                 <th>Ano de lançamento</th>
-                <th>Duração</th>
                 <th></th>
             </thead>
             <tbody>
@@ -44,7 +43,6 @@
                     <td>{{music.artist.name}}</td>
                     <td>{{music.album.name}}</td>
                     <td>{{music.releaseYear}}</td>
-                    <td>{{music.duration}}</td>
                     <td><button class="btn btn-primary" ng-click="vm.addToPlaylist(vm.playlist, music)">adicionar</button></td>
                 </tr>
             </tbody>
