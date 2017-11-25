@@ -1,0 +1,1 @@
+angular.module("labsi", ["ui.router", "ngMessages", "ui.validate", "ui.mask", "ui.bootstrap"]);

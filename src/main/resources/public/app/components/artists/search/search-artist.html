@@ -1,0 +1,28 @@
+<section class="container">
+    <div class="row"></div>
+        <input class="form-control" placeholder="Pesquisar Artista" type="text" name="name" id="name"
+            ng-model="vm.searchCriteria"/>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <th>Nome</th>
+        <th>Imagem</th>
+        <th>Favorito</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="artist in vm.artists | filter:{name : vm.searchCriteria}">
+            <td><a ui-sref="artist.show({name: artist.name})">{{artist.name}}</a></td>
+            <td>
+                <a href="{{artist.image}}" target="_blank" ng-if="artist.image">link</a>
+                <span ng-if="!artist.image">-</span>
+            </td>
+            <td>
+                <input type="checkbox"
+                    ng-model="artist.favorite"
+                    ng-change="vm.confirmUpdate(artist)"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>

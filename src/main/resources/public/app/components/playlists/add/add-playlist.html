@@ -1,0 +1,36 @@
+<div class="container">
+    <form name="vm.playlistForm">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="vm.playlist.name" 
+            placeholder="Nome da playlist" id="playlistName" name="playlistName"
+            ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
+        </div>
+
+        <section ng-messages="vm.playlistForm.playlistName.$error" ng-show="vm.playlistForm.playlistName.$dirty">
+            <div ng-message="availableName" class="alert alert-danger validation-message">
+                Playlist já cadastrada
+            </div>
+            <div ng-message="required" class="alert alert-danger validation-message">
+                Nome obrigatório
+            </div>
+        </section>
+
+        <button class="btn btn-primary col-sm-3 float-right" ng-disabled="vm.playlistForm.$invalid" ng-click="vm.addPlaylist(vm.playlist)">Adicionar playlist
+        </button>
+    </form>
+
+    <table class="table table-striped" ng-show="vm.playlists.length > 0">
+        <thead>
+            <tr>
+                <th>Playlist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="playlist in vm.playlists">
+                <td><a ui-sref="playlist.show({name: playlist.name})">{{playlist.name}}</a></td>
+                <td><button class="btn btn-danger" ng-click="vm.removePlaylist(playlist)">remover</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
