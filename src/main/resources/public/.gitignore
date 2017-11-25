@@ -1,0 +1,4 @@
+package-lock.json
+.idea
+.package.swp
+node_modules/
