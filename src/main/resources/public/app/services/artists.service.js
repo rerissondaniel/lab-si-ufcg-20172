@@ -1,29 +1,21 @@
-angular.module("labsi").service("ArtistsService", function () {
-    var _artists = [];
-    var self = this;
+angular.module("labsi").service("ArtistsService", ["$http", "config", function ($http, config) {
+    const self = this;
+
+    const baseServiceUrl = config.baseUrl + "/artist";
 
     self.add = function (artist) {
-        _artists.push(artist);
+        return $http.post(baseServiceUrl, artist);
     };
 
     self.getArtists = function () {
-        return angular.copy(_artists);
+        return $http.get(baseServiceUrl);
     };
 
     self.updateArtist = function (artist) {
-        var idxToUpdate = _artists.findIndex(function(elem){
-            return elem.name === artist.name;
-        });
-        _artists[idxToUpdate] = artist;
+        return $http.put(baseServiceUrl, artist);
     };
 
     self.getByName = function (name) {
-        var artistsWithName = _artists.find(function (artist) {
-            return artist.name === name;
-        });
-
-        if (artistsWithName) {
-            return angular.copy(artistsWithName);
-        }
+        return $http.get(baseServiceUrl + `/${name}`);
     }
-});
+}]);
