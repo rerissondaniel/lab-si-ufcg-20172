@@ -26,4 +26,14 @@ public class ArtistServiceImpl implements ArtistService {
     public List<Artist> getAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Artist update(Artist artist) {
+        return repository.save(artist);
+    }
+
+    @Override
+    public Artist getByName(String name) {
+        return repository.findByName(name);
+    }
 }
