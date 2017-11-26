@@ -5,8 +5,10 @@ import br.edu.ufcg.lab.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class ArtistServiceImpl implements ArtistService{
+public class ArtistServiceImpl implements ArtistService {
 
     private ArtistRepository repository;
 
@@ -17,7 +19,11 @@ public class ArtistServiceImpl implements ArtistService{
 
     @Override
     public Artist create(Artist artist) {
-        Artist createdArtist = this.repository.save(artist);
-        return createdArtist;
+        return this.repository.save(artist);
+    }
+
+    @Override
+    public List<Artist> getAll() {
+        return repository.findAll();
     }
 }
