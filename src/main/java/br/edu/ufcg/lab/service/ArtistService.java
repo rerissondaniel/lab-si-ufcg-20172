@@ -5,7 +5,7 @@ import br.edu.ufcg.lab.model.Artist;
 import java.util.List;
 
 /**
- * CRUD service for artist
+ * CRUD service for artist.
  */
 public interface ArtistService {
 
@@ -21,4 +21,20 @@ public interface ArtistService {
      * @return all the artists of the system.
      */
     List<Artist> getAll();
+
+    /**
+     * Updates an {@link Artist}
+     *
+     * @param artist {@link Artist to be updated}
+     * @return the updated {@link Artist}
+     */
+    Artist update(Artist artist);
+
+    /**
+     * Returns the artist that has {@param name} as its name.
+     *
+     * @param name The name of the {@link Artist}
+     * @return An artist that has {@param name} as name, if found. {@code null} otherwise.
+     */
+    Artist getByName(String name);
 }
