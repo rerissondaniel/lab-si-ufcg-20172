@@ -2,21 +2,17 @@
     <form name="vm.artistForm">
         <div class="form-group row">
             <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
-                    ng-model="vm.artist.name" ui-validate="{availableName: 'vm.isNameAvailable($value)'}" required/>
+                   ng-model="vm.artist.name" required/>
         </div>
         <div class="form-group row">
-            <input class="form-control" placeholder="Imagem" type="text" name="image" id="image"
-                    ng-model="vm.artist.image"/>
+            <input class="form-control" placeholder="Imagem" type="text" name="imageUrl" id="imageUrl"
+                   ng-model="vm.artist.imageUrl"/>
         </div>
 
         <section ng-messages="vm.artistForm.name.$error"
-                    ng-show="vm.artistForm.name.$dirty">
+                 ng-show="vm.artistForm.name.$dirty">
             <div ng-message="required" class="alert alert-danger col-lg-12">
                 O nome não pode ser vazio
-            </div>
-
-            <div ng-message="availableName" class="alert alert-danger col-lg-12">
-                Artista já cadastrado
             </div>
         </section>
 
@@ -25,6 +21,5 @@
                     ng-click="vm.addArtist(vm.artist)">Adicionar Artista
             </button>
         </div>
-
     </form>
 </section>

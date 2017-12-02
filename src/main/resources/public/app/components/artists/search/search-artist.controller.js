@@ -1,10 +1,14 @@
 angular.module("labsi").controller("SearchArtistCtrl", ["ArtistsService", function (artistsService) {
-    var self = this;
+    const self = this;
 
-    self.artists = artistsService.getArtists();
+    artistsService.getArtists().then(response => {
+        self.artists = response.data;
+    }).catch(error => {
+        //TODO mostrar o erro.
+    });
 
     self.confirmUpdate = function (artist) {
-        var confirmResult;
+        let confirmResult;
         if (artist.favorite) {
             confirmResult = confirm("Deseja realmente adicionar o artista aos favoritos?");
         } else {

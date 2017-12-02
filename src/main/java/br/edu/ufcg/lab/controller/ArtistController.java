@@ -1,12 +1,15 @@
 package br.edu.ufcg.lab.controller;
 
+import br.edu.ufcg.lab.dto.ArtistDto;
 import br.edu.ufcg.lab.model.Artist;
 import br.edu.ufcg.lab.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -21,7 +24,7 @@ public class ArtistController {
     }
 
     @PostMapping
-    public ResponseEntity<Artist> create(Artist artist) {
+    public ResponseEntity<Artist> create(@RequestBody Artist artist) {
         Artist createdArtist = this.artistService.create(artist);
         return new ResponseEntity<>(createdArtist, HttpStatus.CREATED);
     }
@@ -43,8 +46,12 @@ public class ArtistController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Artist>> getAll() {
+    public ResponseEntity<List<ArtistDto>> getAll() {
         List<Artist> artists = this.artistService.getAll();
-        return new ResponseEntity<>(artists, HttpStatus.CREATED);
+        List<ArtistDto> artistDtos = new LinkedList<>();
+        artists.forEach(artist -> {
+            artistDtos.add(new ArtistDto(artist));
+        });
+        return new ResponseEntity<>(artistDtos, HttpStatus.CREATED);
     }
 }
