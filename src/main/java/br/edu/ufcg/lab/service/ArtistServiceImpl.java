@@ -34,6 +34,6 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist getByName(String name) {
-        return repository.findByNameIgnoreCaseContaining(name);
+        return repository.findByNameIgnoreCase(name);
     }
 }

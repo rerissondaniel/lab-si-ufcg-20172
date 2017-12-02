@@ -14,8 +14,8 @@
         <tr ng-repeat="artist in vm.artists | filter:{name : vm.searchCriteria}">
             <td><a ui-sref="artist.show({name: artist.name})">{{artist.name}}</a></td>
             <td>
-                <a href="{{artist.image}}" target="_blank" ng-if="artist.image">link</a>
-                <span ng-if="!artist.image">-</span>
+                <a href="{{artist.imageUrl}}" target="_blank" ng-if="artist.imageUrl">link</a>
+                <span ng-if="!artist.imageUrl">-</span>
             </td>
             <td>
                 <input type="checkbox"

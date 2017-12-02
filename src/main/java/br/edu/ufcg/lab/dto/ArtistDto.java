@@ -8,24 +8,23 @@ public class ArtistDto {
 
     private String name;
 
+    private String imageUrl;
+
     public ArtistDto(Artist artist) {
         this.id = artist.getId();
         this.name = artist.getName();
+        this.imageUrl = artist.getImageUrl();
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

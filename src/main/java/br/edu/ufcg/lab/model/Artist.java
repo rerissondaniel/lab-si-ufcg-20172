@@ -31,6 +31,8 @@ public class Artist implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
+    private Integer rating;
+
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "tb_album_music",
             joinColumns = @JoinColumn(name = "id_album", referencedColumnName = "id"),
@@ -67,6 +69,14 @@ public class Artist implements Serializable {
 
     public void setAlbuns(List<Album> albuns) {
         this.albuns = albuns;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     @Override
