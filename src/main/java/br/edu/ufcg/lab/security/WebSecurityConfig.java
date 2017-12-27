@@ -17,33 +17,34 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	@Qualifier("dataSource")
-	private DataSource dataSource;
+    private final UserDetailsService userDetailsService;
 
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Autowired
+    public WebSecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
-	@Override
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable().authorizeRequests()
-			.antMatchers("/site/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/user").permitAll()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.anyRequest().authenticated()
-			.and()
+        httpSecurity.csrf().disable().authorizeRequests()
+                .antMatchers("/site/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
+                .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
 
-			// filtra requisições de login
-			.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
-	                UsernamePasswordAuthenticationFilter.class)
+                // filtra requisições de login
+                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
 
-			// filtra outras requisições para verificar a presença do JWT no header
-			.addFilterBefore(new JWTAuthenticationFilter(),
-	                UsernamePasswordAuthenticationFilter.class);
-	}
+                // filtra outras requisições para verificar a presença do JWT no header
+                .addFilterBefore(new JWTAuthenticationFilter(),
+                        UsernamePasswordAuthenticationFilter.class);
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
 }
