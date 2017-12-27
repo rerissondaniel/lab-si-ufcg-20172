@@ -10,12 +10,4 @@ angular.module("labsi").service("ArtistsService", ["$http", "config", function (
     self.getArtists = function () {
         return $http.get(baseServiceUrl);
     };
-
-    self.updateArtist = function (artist) {
-        return $http.put(baseServiceUrl, artist);
-    };
-
-    self.getByName = function (name) {
-        return $http.get(baseServiceUrl + `/${name}`);
-    }
 }]);

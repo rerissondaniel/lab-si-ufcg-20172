@@ -4,6 +4,24 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
+        .state("home", {
+            url: "/",
+        })
+
+        .state("home.login", {
+            url: "login",
+            templateUrl: "app/components/user/login/login.html",
+            controller: 'LoginCtrl',
+            controllerAs: "vm",
+        })
+
+        .state("home.register", {
+            url: "register",
+            templateUrl: "app/components/user/new/new-user.html",
+            controller: "NewUserCtrl",
+            controllerAs: "vm",
+        })
+
         .state("artist", {
             url: "/artist",
             abstract: true

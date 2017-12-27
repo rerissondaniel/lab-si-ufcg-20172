@@ -1,0 +1,49 @@
+<form name="vm.userForm">
+    <div class="form-group row">
+        <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
+               ng-model="vm.user.name"
+               required/>
+    </div>
+    <div class="form-group row">
+        <input class="form-control" placeholder="Email" type="username" name="username" id="username"
+               ng-model="vm.user.username"
+               required/>
+    </div>
+    <div class="form-group row">
+        <input class="form-control" placeholder="Senha" type="password" name="password" id="password"
+               ng-model="vm.user.password"
+               required/>
+    </div>
+
+    <section ng-messages="vm.userForm.name.$error"
+             ng-show="vm.userForm.name.$dirty">
+        <div ng-message="required" class="alert alert-danger validation-message">
+            O nome não pode ser vazio
+        </div>
+    </section>
+
+    <section ng-messages="vm.userForm.username.$error"
+             ng-show="vm.userForm.username.$dirty">
+        <div ng-message="required" class="alert alert-danger validation-message">
+            O Email não pode ser vazio
+        </div>
+
+        <div ng-message="username" class="alert alert-danger validation-message">
+            Email no formato inválido
+        </div>
+    </section>
+
+    <section ng-messages="vm.userForm.password.$error"
+             ng-show="vm.userForm.password.$dirty">
+        <div ng-message="required" class="alert alert-danger validation-message">
+            A senha não pode ser vazia
+        </div>
+    </section>
+
+    <section class="row">
+        <button class="btn btn-primary btn-block" ng-disabled="vm.userForm.$invalid" id="btn.add.artist"
+                ng-click="vm.add(vm.user)">Cadastrar
+        </button>
+    </section>
+
+</form>

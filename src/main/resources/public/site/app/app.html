@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand flex-column">
     <div class="navbar-nav bd-navbar-nav flex-row">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" ng-show="vm.isUserAuthenticated()">
             <li class="nav-item active">
                 <a class="nav-link" ui-sref="artist.add()">Adicionar Artista</a>
             </li>
@@ -14,5 +14,14 @@
                 <a class="nav-link" ui-sref="playlist.add()">Adicionar Playlist</a>
             </li>
         </ul>
-    </div>    
+
+        <ul class="navbar-nav mr-auto" ng-show="!vm.isUserAuthenticated()">
+            <li class="nav-item active">
+                <a class="nav-link" ui-sref="home.login()">Login</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" ui-sref="home.register()">Cadastro</a>
+            </li>
+        </ul>
+    </div>
 </header>

@@ -21,8 +21,15 @@
 
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
+    <script src="app/app.controller.js"></script>
 
     <script src="app/config/config.value.js"></script>
+
+    <script src="app/services/user.service.js"></script>
+    <script src="app/components/user/new/new-user.controller.js"></script>
+
+    <script src="app/services/auth.service.js"></script>
+    <script src="app/components/user/login/login.controller.js"></script>
 
     <script src="app/services/artists.service.js"></script>
     <script src="app/components/artists/add/add-artist.controller.js"></script>
@@ -41,8 +48,10 @@
 
     <title>1º Lab Sistemas de Informação 20172.2</title>
 </head>
-<body ng-app="labsi">
-    <div ng-include="'app/components/header/header.html'"></div>
-    <div class="main-container" ui-view></div>
+<body ng-app="labsi" ng-controller="AppController as vm">
+<div class="main-container">
+    <div ng-include="'app/app.html'"></div>
+    <div ui-view></div>
+</div>
 </body>
 </html>
