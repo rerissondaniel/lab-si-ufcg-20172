@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RatingRepository extends JpaRepository<UserArtist, Integer> {
+public interface UserArtistRepository extends JpaRepository<UserArtist, Integer> {
 
     UserArtist findByArtistAndUser(Artist artist, User user);
 

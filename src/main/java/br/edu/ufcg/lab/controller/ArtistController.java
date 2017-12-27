@@ -5,7 +5,6 @@ import br.edu.ufcg.lab.model.Artist;
 import br.edu.ufcg.lab.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,28 +15,28 @@ import java.util.List;
 @RequestMapping("/artist")
 public class ArtistController {
 
-    private ArtistService artistService;
+    private ArtistService service;
 
     @Autowired
-    public ArtistController(ArtistService artistService) {
-        this.artistService = artistService;
+    public ArtistController(ArtistService service) {
+        this.service = service;
     }
 
     @PostMapping
     public ResponseEntity<Artist> create(@RequestBody Artist artist) {
-        Artist createdArtist = this.artistService.create(artist);
+        Artist createdArtist = service.create(artist);
         return new ResponseEntity<>(createdArtist, HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<Artist> update(@RequestBody Artist artist) {
-        Artist updatedArtist = this.artistService.update(artist);
+        Artist updatedArtist = service.update(artist);
         return new ResponseEntity<>(updatedArtist, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{name}")
     public ResponseEntity<Artist> getByName(@PathVariable String name) {
-        Artist artist = this.artistService.getByName(name);
+        Artist artist = service.getByName(name);
         if (artist != null) {
             return new ResponseEntity<>(artist, HttpStatus.OK);
         } else {
@@ -47,11 +46,9 @@ public class ArtistController {
 
     @GetMapping
     public ResponseEntity<List<ArtistDto>> getAll() {
-        List<Artist> artists = this.artistService.getAll();
+        List<Artist> artists = service.getAll();
         List<ArtistDto> artistDtos = new LinkedList<>();
-        artists.forEach(artist -> {
-            artistDtos.add(new ArtistDto(artist));
-        });
+        artists.forEach(artist -> artistDtos.add(new ArtistDto(artist)));
         return new ResponseEntity<>(artistDtos, HttpStatus.CREATED);
     }
 }

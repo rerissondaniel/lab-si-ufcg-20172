@@ -2,6 +2,8 @@ package br.edu.ufcg.lab.dto;
 
 import br.edu.ufcg.lab.model.Artist;
 
+import java.util.List;
+
 public class ArtistDto {
 
     private Integer id;
@@ -9,6 +11,8 @@ public class ArtistDto {
     private String name;
 
     private String imageUrl;
+
+    private List<String> albuns;
 
     public ArtistDto(Artist artist) {
         this.id = artist.getId();

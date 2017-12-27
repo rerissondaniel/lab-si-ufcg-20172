@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RatingServiceImpl implements RatingService {
+public class UserArtistServiceImpl implements UserArtistService {
     private ArtistService artistService;
     private UserService userService;
     private UserArtistRepository repository;
 
     @Autowired
-    public RatingServiceImpl(ArtistService artistService, UserService userService, UserArtistRepository repository) {
+    public UserArtistServiceImpl(ArtistService artistService, UserService userService, UserArtistRepository repository) {
         this.artistService = artistService;
         this.userService = userService;
         this.repository = repository;
@@ -25,7 +25,12 @@ public class RatingServiceImpl implements RatingService {
         Artist artist = artistService.getByName(artistName);
         User user = userService.getById(idUser);
 
-        return repository.findByArtistAndUser(artist, user);
+        UserArtist userArtist = repository.findByArtistAndUser(artist, user);
+        if(userArtist == null){
+            userArtist = new UserArtist(artist, user);
+        }
+
+        return userArtist;
     }
 
     @Override

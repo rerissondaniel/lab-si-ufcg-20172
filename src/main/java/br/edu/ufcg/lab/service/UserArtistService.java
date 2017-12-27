@@ -2,7 +2,7 @@ package br.edu.ufcg.lab.service;
 
 import br.edu.ufcg.lab.model.UserArtist;
 
-public interface RatingService {
+public interface UserArtistService {
 
     UserArtist get(String artistName, Integer idUser);
 

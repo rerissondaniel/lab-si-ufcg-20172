@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +24,12 @@ public class Album {
     @Column(unique = true)
     @NotEmpty
     private String name;
+
+    @OneToMany
+    @JoinColumn(name = "album_id")
+    @NotEmpty
+    private List<Music> musics;
+
 
     public Album() {
     }

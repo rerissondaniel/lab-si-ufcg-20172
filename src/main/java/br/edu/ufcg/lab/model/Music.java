@@ -29,11 +29,6 @@ public class Music implements Serializable {
     @NotEmpty
     private String releaseYear;
 
-    @ManyToOne
-    @JoinColumn(name = "album_id")
-    @NotEmpty
-    private Album album;
-
     //In seconds
     @Column
     @NotEmpty
@@ -74,14 +69,6 @@ public class Music implements Serializable {
         this.duration = duration;
     }
 
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,12 +77,11 @@ public class Music implements Serializable {
         return Objects.equals(getId(), music.getId()) &&
                 Objects.equals(getName(), music.getName()) &&
                 Objects.equals(getReleaseYear(), music.getReleaseYear()) &&
-                Objects.equals(getAlbum(), music.getAlbum()) &&
                 Objects.equals(getDuration(), music.getDuration());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getReleaseYear(), getAlbum(), getDuration());
+        return Objects.hash(getId(), getName(), getReleaseYear(), getDuration());
     }
 }
