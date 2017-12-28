@@ -2,14 +2,8 @@ package br.edu.ufcg.lab.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -29,9 +23,12 @@ public class Music implements Serializable {
     @NotEmpty
     private String releaseYear;
 
+    @Transient
+    private Artist artist;
+
     //In seconds
     @Column
-    @NotEmpty
+    @NotNull
     private Integer duration;
 
     public Music() {
@@ -83,5 +80,13 @@ public class Music implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getReleaseYear(), getDuration());
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

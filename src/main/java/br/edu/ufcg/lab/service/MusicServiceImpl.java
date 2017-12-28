@@ -6,8 +6,6 @@ import br.edu.ufcg.lab.repository.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class MusicServiceImpl implements MusicService{
 
@@ -18,8 +16,4 @@ public class MusicServiceImpl implements MusicService{
         this.repository = repository;
     }
 
-    @Override
-    public void add(Music music, Album album) {
-
-    }
 }

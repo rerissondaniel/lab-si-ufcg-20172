@@ -20,7 +20,7 @@
     <div class="form-group row">
         <label for="lastListened" class="col-sm-2 col-form-label"> Última música ouvida: </label>
         <select id="lastListened" class="form-control col-sm-10" name="artist" ng-model="vm.userArtist.lastListened"
-                ng-options="music.name as music.name for music in vm.musics | orderBy:'+name'" required>
+                ng-options="music as music.name for music in vm.musics | orderBy:'+name' track by music.name" required>
             <option value="">Selecione a última música ouvida</option>
         </select>
     </div>
@@ -36,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="album in vm.albuns">
+            <tr ng-repeat="album in vm.userArtist.artist.albuns">
                 <td>{{album.name}}</td>
             </tr>
         </tbody>

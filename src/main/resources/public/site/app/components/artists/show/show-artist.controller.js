@@ -1,5 +1,5 @@
 angular.module("labsi").controller("ShowArtistCtrl",
-    ["$stateParams", "UserArtistsService", "MusicsService", function ($stateParams, userArtistsService) {
+    ["$stateParams", "UserArtistsService", function ($stateParams, userArtistsService) {
 
         const self = this;
 
@@ -7,6 +7,10 @@ angular.module("labsi").controller("ShowArtistCtrl",
 
         userArtistsService.getByName(_artistName).then((response) => {
             self.userArtist = response.data;
+            self.musics = [];
+            self.userArtist.artist.albuns.forEach(elem => {
+                elem.musics.forEach(music => self.musics.push(music));
+            });
         }).catch(error => {
             console.log('mostrar erro');
         });

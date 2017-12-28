@@ -1,12 +1,16 @@
 <form name="vm.musicForm" class="container">
 
+    <!--<div class="form-group row">-->
+        <!--<input class="form-control" placeholder="Nome" type="text" name="name" id="name"-->
+            <!--ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album.name)'}"-->
+            <!--ui-validate-watch="'vm.music.album.name'"-->
+            <!--required/>-->
+    <!--</div>-->
     <div class="form-group row">
         <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
-            ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album.name)'}"
-            ui-validate-watch="'vm.music.album.name'"
-            required/>
+               ng-model="vm.music.name"
+               required/>
     </div>
-
     <div class="form-group row">
         <select class="form-control" name="artist" ng-model="vm.music.artist"
                 ng-options="artist.name for artist in vm.artists | orderBy:'+name'" required>
@@ -14,15 +18,21 @@
         </select>
     </div>
     
+    <!--<div class="form-group row">-->
+        <!--<input class="form-control" placeholder="Álbum" type="text" name="album" id="album"-->
+            <!--ng-model="vm.music.album.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"-->
+            <!--ui-validate-watch="'vm.music.name'"-->
+            <!--required/>-->
+    <!--</div>-->
+
     <div class="form-group row">
         <input class="form-control" placeholder="Álbum" type="text" name="album" id="album"
-            ng-model="vm.music.album.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"
-            ui-validate-watch="'vm.music.name'"
-            required/>
+               ng-model="vm.albumName"
+               required/>
     </div>
 
     <div class="form-group row">
-        <input class="form-control" placeholder="Ano de lançamento" type="year" name="releaseYear" id="releaseYear"
+        <input class="form-control" placeholder="Ano de lançamento" name="releaseYear" id="releaseYear"
             ng-model="vm.music.releaseYear" ui-mask="9999" ui-mask-placeholder ui-mask-placeholder-char="A" required/>
     </div>
 
@@ -77,7 +87,7 @@
 
     <section class="row">
         <button class="btn btn-primary btn-block" ng-disabled="vm.musicForm.$invalid" id="btn.add.artist"
-                ng-click="vm.addMusic(vm.music)">Adicionar Música
+                ng-click="vm.addMusic(vm.music, vm.albumName)">Adicionar Música
         </button>
     </section>
 </form>

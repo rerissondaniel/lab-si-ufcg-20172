@@ -32,9 +32,9 @@ public class Artist implements Serializable {
     private String imageUrl;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "tb_album_music",
+    @JoinTable(name = "tb_album_artist",
             joinColumns = @JoinColumn(name = "id_album", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_music", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "id_artist", referencedColumnName = "id"))
     private List<Album> albuns;
 
     public String getName() {
@@ -67,6 +67,10 @@ public class Artist implements Serializable {
 
     public void setAlbuns(List<Album> albuns) {
         this.albuns = albuns;
+    }
+
+    public boolean addAlbum(Album album) {
+        return albuns.add(album);
     }
 
     @Override

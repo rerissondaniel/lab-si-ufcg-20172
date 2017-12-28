@@ -1,5 +1,7 @@
 package br.edu.ufcg.lab.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,10 +31,16 @@ public class Album {
     @OneToMany
     @JoinColumn(name = "album_id")
     @NotEmpty
+    @Cascade({CascadeType.MERGE, CascadeType.PERSIST})
     private List<Music> musics;
 
 
     public Album() {
+    }
+
+    public Album(String albumName) {
+        this.name = albumName;
+        this.musics = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -48,6 +57,18 @@ public class Album {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean add(Music music) {
+        return musics.add(music);
+    }
+
+    public List<Music> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(List<Music> musics) {
+        this.musics = musics;
     }
 
     @Override
