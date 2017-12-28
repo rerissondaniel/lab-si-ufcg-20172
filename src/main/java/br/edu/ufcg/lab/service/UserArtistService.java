@@ -4,7 +4,7 @@ import br.edu.ufcg.lab.model.UserArtist;
 
 public interface UserArtistService {
 
-    UserArtist get(String artistName, Integer idUser);
+    UserArtist get(String artistName, String username);
 
     void createOrUpdate(UserArtist userArtist);
 

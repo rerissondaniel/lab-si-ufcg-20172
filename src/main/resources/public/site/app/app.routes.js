@@ -12,40 +12,41 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
             url: "login",
             templateUrl: "app/components/user/login/login.html",
             controller: 'LoginCtrl',
-            controllerAs: "vm",
+            controllerAs: "vm"
         })
 
         .state("home.register", {
             url: "register",
             templateUrl: "app/components/user/new/new-user.html",
             controller: "NewUserCtrl",
-            controllerAs: "vm",
+            controllerAs: "vm"
         })
 
         .state("artist", {
             url: "/artist",
-            abstract: true
+            abstract: true,
         })
 
         .state("artist.add", {
             url: "/add",
             controller: "AddArtistsCtrl",
             controllerAs: "vm",
-            templateUrl: "app/components/artists/add/add-artist.html"
+            templateUrl: "app/components/artists/add/add-artist.html",
+            authorize: true
         })
 
         .state("artist.search", {
             controller: "SearchArtistCtrl",
             controllerAs: "vm",
             url: "/search",
-            templateUrl: "app/components/artists/search/search-artist.html"
+            templateUrl: "app/components/artists/search/search-artist.html",
         })
 
         .state("artist.show", {
             url: "/show?name",
             controller: "ShowArtistCtrl",
             controllerAs: "vm",
-            templateUrl: "app/components/artists/show/show-artist.html"
+            templateUrl: "app/components/artists/show/show-artist.html",
         })
 
 
@@ -53,7 +54,8 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
             url: "/music",
             abstract: true,
             controller: "MusicsCtrl",
-            controllerAs: "vm"
+            controllerAs: "vm",
+            authorize: true
         })
 
         .state("music.add", {
@@ -64,7 +66,8 @@ angular.module("labsi").config(function ($stateProvider, $urlRouterProvider) {
 
         .state("playlist", {
             url: "/playlist",
-            abstract: true
+            abstract: true,
+            authorize: true
         })
 
         .state("playlist.add", {

@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -34,15 +35,19 @@ class TokenAuthenticationService {
         String token = request.getHeader(HEADER_STRING);
 
         if (token != null) {
-            // faz parse do token
-            String user = Jwts.parser()
-                    .setSigningKey(SECRET)
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
+            try {
+                // faz parse do token
+                String user = Jwts.parser()
+                        .setSigningKey(SECRET)
+                        .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                        .getBody()
+                        .getSubject();
 
-            if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+                if (user != null) {
+                    return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+                }
+            } catch (MalformedJwtException e) {
+                return null;
             }
         }
         return null;

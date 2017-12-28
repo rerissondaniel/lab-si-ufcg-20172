@@ -1,6 +1,12 @@
-angular.module("labsi").controller("AppController", [function(){
+angular.module("labsi").controller("AppController", ['$state', 'AuthTokenService', function ($state, authTokenService) {
     const self = this;
-    this.isUserAuthenticated = function(){
-        return false;
+
+    self.isUserAuthenticated = () => {
+        return authTokenService.isUserAuthenticated();
+    };
+
+    self.logout = () => {
+        authTokenService.logout();
+        $state.go('home.login');
     }
 }]);

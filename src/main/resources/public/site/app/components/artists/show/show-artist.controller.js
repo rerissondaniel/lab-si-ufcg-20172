@@ -1,17 +1,21 @@
 angular.module("labsi").controller("ShowArtistCtrl",
-    ["$stateParams", "ArtistsService", "MusicsService", function ($stateParams, artistsService, musicsService) {
+    ["$stateParams", "UserArtistsService", "MusicsService", function ($stateParams, userArtistsService) {
 
         const self = this;
 
         const _artistName = $stateParams.name;
 
-        artistsService.getByName(_artistName).then((response) => {
-            self.artist = response.data;
+        userArtistsService.getByName(_artistName).then((response) => {
+            self.userArtist = response.data;
         }).catch(error => {
-            //TODO mostrar o erro.
+            console.log('mostrar erro');
         });
 
-        self.updateArtist = function (artist) {
-            artistsService.updateArtist(artist);
+        self.updateUserArtist = function (userArtist) {
+            userArtistsService.updateUserArtist(userArtist).then((response) => {
+                console.log('mostrar sucesso');
+            }).catch((error) => {
+                //TODO mostrar o erro.
+            });
         }
     }]);

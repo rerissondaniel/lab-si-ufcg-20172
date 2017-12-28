@@ -7,4 +7,6 @@ public interface UserService extends UserDetailsService{
     User getById(Integer id);
 
     User create(User user);
+
+    User getByUsername(String username);
 }

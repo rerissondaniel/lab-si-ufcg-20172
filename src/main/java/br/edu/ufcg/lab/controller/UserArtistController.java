@@ -2,19 +2,27 @@ package br.edu.ufcg.lab.controller;
 
 import br.edu.ufcg.lab.model.UserArtist;
 import br.edu.ufcg.lab.service.UserArtistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/user/artist")
 public class UserArtistController {
 
-    public UserArtistService service;
+    private UserArtistService service;
 
-    @GetMapping("/{userId}/{artistName}")
-    public ResponseEntity<UserArtist> get(String artistName, Integer userId) {
-        return new ResponseEntity<>(service.get(artistName, userId), HttpStatus.OK);
+    @Autowired
+    public UserArtistController(UserArtistService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/{artistName}")
+    public ResponseEntity<UserArtist> get(@PathVariable("artistName") String artistName, Principal principal) {
+        return new ResponseEntity<>(service.get(artistName, principal.getName()), HttpStatus.OK);
     }
 
     @PutMapping

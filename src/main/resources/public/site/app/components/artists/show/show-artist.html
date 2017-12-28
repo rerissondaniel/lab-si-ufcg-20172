@@ -2,30 +2,30 @@
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label"> Nome: </label>
         <input type="text" readonly class="form-control col-sm-10" id="name" name="name"
-               ng-value="vm.artist.name"/>
+               ng-value="vm.userArtist.artist.name"/>
     </div>
     
     <div class="form-group row">
         <label for="image" class="col-sm-2 col-form-label"> Imagem: </label>
         <input type="text" readonly class="form-control col-sm-10" id="image" name="image"
-               ng-value="vm.artist.imageUrl"/>
+               ng-value="vm.userArtist.artist.imageUrl"/>
     </div>
 
     <div class="form-group row">
         <label for="userArtist" class="col-sm-2 col-form-label"> Nota: </label>
         <input type="text" class="form-control col-sm-10" id="userArtist" name="userArtist"
-               ng-model="vm.artist.userArtist"/>
+               ng-model="vm.userArtist.rating"/>
     </div>
     
     <div class="form-group row">
         <label for="lastListened" class="col-sm-2 col-form-label"> Última música ouvida: </label>
-        <select id="lastListened" class="form-control col-sm-10" name="artist" ng-model="vm.artist.lastListened"
+        <select id="lastListened" class="form-control col-sm-10" name="artist" ng-model="vm.userArtist.lastListened"
                 ng-options="music.name as music.name for music in vm.musics | orderBy:'+name'" required>
             <option value="">Selecione a última música ouvida</option>
         </select>
     </div>
 
-    <button class="btn btn-primary btn-block float-right col-sm-3" ng-click="vm.updateArtist(vm.artist)">Salvar</button>
+    <button class="btn btn-primary btn-block float-right col-sm-3" ng-click="vm.updateUserArtist(vm.userArtist)">Salvar</button>
 
     <table class="table table-striped">
         <thead>

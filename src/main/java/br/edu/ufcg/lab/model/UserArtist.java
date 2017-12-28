@@ -14,7 +14,7 @@ public class UserArtist {
     private Integer rating;
 
     @OneToOne
-    private Music lastHeard;
+    private Music lastListened;
 
     @OneToOne(cascade = CascadeType.MERGE)
     private Artist artist;
@@ -62,12 +62,12 @@ public class UserArtist {
         this.user = user;
     }
 
-    public Music getLastHeard() {
-        return lastHeard;
+    public Music getLastListened() {
+        return lastListened;
     }
 
-    public void setLastHeard(Music lastHeard) {
-        this.lastHeard = lastHeard;
+    public void setLastListened(Music lastListened) {
+        this.lastListened = lastListened;
     }
 
     @Override
@@ -77,13 +77,13 @@ public class UserArtist {
         UserArtist that = (UserArtist) o;
         return Objects.equals(getId(), that.getId()) &&
                 Objects.equals(getRating(), that.getRating()) &&
-                Objects.equals(getLastHeard(), that.getLastHeard()) &&
+                Objects.equals(getLastListened(), that.getLastListened()) &&
                 Objects.equals(getArtist(), that.getArtist()) &&
                 Objects.equals(getUser(), that.getUser());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRating(), getLastHeard(), getArtist(), getUser());
+        return Objects.hash(getId(), getRating(), getLastListened(), getArtist(), getUser());
     }
 }

@@ -21,14 +21,15 @@ public class UserArtistServiceImpl implements UserArtistService {
     }
 
     @Override
-    public UserArtist get(String artistName, Integer idUser) {
+    public UserArtist get(String artistName, String username) {
         Artist artist = artistService.getByName(artistName);
-        User user = userService.getById(idUser);
+        User user = userService.getByUsername(username);
 
         UserArtist userArtist = repository.findByArtistAndUser(artist, user);
         if(userArtist == null){
             userArtist = new UserArtist(artist, user);
         }
+        repository.save(userArtist);
 
         return userArtist;
     }
