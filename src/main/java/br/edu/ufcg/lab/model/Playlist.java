@@ -14,7 +14,7 @@ public class Playlist {
     @GeneratedValue
     private Integer id;
 
-    @Column(unique = true)
+    @Column
     @NotEmpty
     private String name;
 
@@ -23,6 +23,10 @@ public class Playlist {
             joinColumns = @JoinColumn(name = "id_playlist", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_music", referencedColumnName = "id"))
     private List<Music> musics;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
     public Playlist() {
     }
@@ -64,5 +68,17 @@ public class Playlist {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getMusics());
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean containsMusic(Music music) {
+        return musics.contains(music);
     }
 }

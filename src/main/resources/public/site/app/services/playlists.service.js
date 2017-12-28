@@ -1,49 +1,29 @@
-angular.module("labsi").service("PlaylistsService", ["MusicsService", function (musicsService) {
-    var self = this;
-    var _playlists = [];
+angular.module('labsi').service('PlaylistsService', ['$http', 'config', function ($http, config) {
+    const self = this;
 
-    self.addPlaylist = function(playlist){
-        _playlists.push(playlist);
+    const baseServiceUrl = `${config.baseUrl}/playlist`;
+
+    self.addPlaylist = function (playlist) {
+        return $http.post(baseServiceUrl, playlist);
     };
 
-    self.getPlaylists = function(){
-        return angular.copy(_playlists);
-    }
+    self.getPlaylists = function () {
+        return $http.get(baseServiceUrl);
+    };
 
-    self.deletePlaylist = function(playlistToBeDeleted){
-        var idxToRemove = _playlists.findIndex(function(playlist){
-            return playlistToBeDeleted.name === playlist.name;
-        });
+    self.deletePlaylist = function (playlistToBeDeleted) {
+        return $http.delete(`${baseServiceUrl}/${playlistToBeDeleted.id}`);
+    };
 
-        _playlists.splice(idxToRemove, 1);
-    }
+    self.getAvailableMusics = function (playlist) {
+        return $http.get(`${baseServiceUrl}/${playlist.name}/available-musics`);
+    };
 
-    self.getAvailableMusics = function(playlist){
-        return musicsService.getMusics().filter(function(music){
-            return !_isInPlaylist(music, playlist);
-        });
-    }
+    self.update = function (playlist) {
+        return $http.post(`${baseServiceUrl}`, playlist);
+    };
 
-    self.update = function(playlist){
-        var idxToUpdate = _playlists.findIndex(function(elem){
-            return elem.name === playlist.name;
-        });
-        _playlists[idxToUpdate] = playlist;
-    }
-
-    self.getByName = function(name){
-        var playlistsWithName = _playlists.find(function (playlist) {
-            return playlist.name === name;
-        });
-
-        if (playlistsWithName) {
-            return angular.copy(playlistsWithName);
-        }
-    }
-
-    function _isInPlaylist(music, playlist){
-        return playlist.musics.find(function(musicInPlaylist){
-            return musicInPlaylist.name === music.name;
-        });
-    }
+    self.getByName = function (name) {
+        return $http.get(`${baseServiceUrl}/${name}`);
+    };
 }]);

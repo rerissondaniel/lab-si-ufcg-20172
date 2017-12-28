@@ -1,5 +1,9 @@
 package br.edu.ufcg.lab.service;
 
-public interface MusicService {
+import br.edu.ufcg.lab.model.Music;
 
+import java.util.List;
+
+public interface MusicService {
+    List<Music> getAll();
 }

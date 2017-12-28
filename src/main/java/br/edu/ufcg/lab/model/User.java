@@ -38,10 +38,6 @@ public class User implements Serializable, UserDetails {
     @NotEmpty
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "id_user")
-    private List<Playlist> playlists;
-
     public User() {
     }
 
@@ -106,10 +102,6 @@ public class User implements Serializable, UserDetails {
         this.id = id;
     }
 
-    public List<Playlist> getPlaylists() {
-        return playlists;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,12 +110,11 @@ public class User implements Serializable, UserDetails {
         return Objects.equals(getId(), user.getId()) &&
                 Objects.equals(getName(), user.getName()) &&
                 Objects.equals(getUsername(), user.getUsername()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getPlaylists(), user.getPlaylists());
+                Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getUsername(), getPassword(), getPlaylists());
+        return Objects.hash(getId(), getName(), getUsername(), getPassword());
     }
 }

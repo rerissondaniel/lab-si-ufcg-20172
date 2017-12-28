@@ -6,10 +6,9 @@ angular.module('labsi').controller('MusicsCtrl', ['AlbumsService', 'ArtistsServi
     });
 
     self.addMusic = function (music, albumName) {
-        albumService.addMusic(music, albumName).then((result) => {
-            console.log('Música adicionada, mostrar msg');
+        albumService.addMusic(music, albumName).then(() => {
             _resetMusicForm();
-        }).catch((error) => {
+        }).catch(() => {
             console.log('Música não adicionada, mostrar msg');
         });
     };
