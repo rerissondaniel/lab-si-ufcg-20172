@@ -3,8 +3,8 @@ angular.module("labsi").controller("SearchArtistCtrl", ["ArtistsService", functi
 
     artistsService.getArtists().then(response => {
         self.artists = response.data;
-    }).catch(error => {
-        //TODO mostrar o erro.
+    }).catch(() => {
+        self.responseError = 'Erro na comunicação com o servidor';
     });
 
     self.confirmUpdate = function (artist) {
@@ -23,6 +23,6 @@ angular.module("labsi").controller("SearchArtistCtrl", ["ArtistsService", functi
     };
 
     function _updateArtist(artist) {
-        artistsService.updateArtist(artist);
+        artistsService.update(artist);
     }
 }]);

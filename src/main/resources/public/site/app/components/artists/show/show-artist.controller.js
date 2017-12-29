@@ -11,15 +11,15 @@ angular.module("labsi").controller("ShowArtistCtrl",
             self.userArtist.artist.albuns.forEach(elem => {
                 elem.musics.forEach(music => self.musics.push(music));
             });
-        }).catch(error => {
-            console.log('mostrar erro');
+        }).catch(() => {
+            self.responseError = 'Erro na comunicação com o servidor';
         });
 
         self.updateUserArtist = function (userArtist) {
-            userArtistsService.updateUserArtist(userArtist).then((response) => {
+            userArtistsService.updateUserArtist(userArtist).then(() => {
                 console.log('mostrar sucesso');
-            }).catch((error) => {
-                //TODO mostrar o erro.
+            }).catch(() => {
+                self.responseError = 'Erro na comunicação com o servidor';
             });
         }
     }]);

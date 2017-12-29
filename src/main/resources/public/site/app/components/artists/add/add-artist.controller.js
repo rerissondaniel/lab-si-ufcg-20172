@@ -4,8 +4,8 @@ angular.module("labsi").controller("AddArtistsCtrl", ["ArtistsService", function
     self.addArtist = function (artist) {
         artistsService.add(artist).then(() => {
             _cleanArtistForm();
-        }).catch((error) => {
-            //TODO apresentar mensagem de erro
+        }).catch(() => {
+            self.responseError = 'Nome de artista duplicado';
         });
     };
 

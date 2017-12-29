@@ -1,11 +1,5 @@
 <form name="vm.musicForm" class="container">
 
-    <!--<div class="form-group row">-->
-        <!--<input class="form-control" placeholder="Nome" type="text" name="name" id="name"-->
-            <!--ng-model="vm.music.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable($value, vm.music.album.name)'}"-->
-            <!--ui-validate-watch="'vm.music.album.name'"-->
-            <!--required/>-->
-    <!--</div>-->
     <div class="form-group row">
         <input class="form-control" placeholder="Nome" type="text" name="name" id="name"
                ng-model="vm.music.name"
@@ -17,13 +11,6 @@
             <option value="">Selecione um artista</option>
         </select>
     </div>
-    
-    <!--<div class="form-group row">-->
-        <!--<input class="form-control" placeholder="Álbum" type="text" name="album" id="album"-->
-            <!--ng-model="vm.music.album.name" ui-validate="{musicAvailable : 'vm.isMusicAvailable(vm.music.name, $value)'}"-->
-            <!--ui-validate-watch="'vm.music.name'"-->
-            <!--required/>-->
-    <!--</div>-->
 
     <div class="form-group row">
         <input class="form-control" placeholder="Álbum" type="text" name="album" id="album"
@@ -84,6 +71,8 @@
             A duração não pode ser vazia
         </div>
     </section>
+
+    <div ng-include="'app/components/response-error.html'"></div>
 
     <section class="row">
         <button class="btn btn-primary btn-block" ng-disabled="vm.musicForm.$invalid" id="btn.add.artist"

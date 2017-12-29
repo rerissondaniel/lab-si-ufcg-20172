@@ -4,9 +4,8 @@ angular.module('labsi').controller('NewUserCtrl', ["UserService", "$state", func
     self.add = function (newUser) {
         userService.add(newUser).then(function () {
             $state.go('home.login');
-        }).catch(function (error) {
-            console.log(error);
-            self.responseError = 'Erro interno no servidor, por favor tente novamente mais tarde';
+        }).catch(() => {
+            self.responseError = 'Erro no cadastro, insira outro endereço de email ou tente novamente mais tarde';
         });
     }
 }]);

@@ -15,6 +15,8 @@
             </div>
         </section>
 
+        <div ng-include="'app/components/response-error.html'"></div>
+
         <button class="btn btn-primary col-sm-3 float-right" ng-disabled="vm.playlistForm.$invalid" ng-click="vm.addPlaylist(vm.playlist)">Adicionar playlist
         </button>
     </form>

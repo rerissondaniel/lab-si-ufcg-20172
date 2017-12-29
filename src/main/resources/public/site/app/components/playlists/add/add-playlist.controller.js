@@ -3,8 +3,8 @@ angular.module('labsi').controller('AddPlaylistCtrl', ['PlaylistsService', funct
 
     playlistsService.getPlaylists().then((response) => {
         self.playlists = response.data;
-    }).catch(error => {
-        console.log(error);
+    }).catch(() => {
+        self.responseError = 'Erro na comunicação com o servidor';
     });
 
     self.addPlaylist = function (playlist) {
@@ -12,8 +12,8 @@ angular.module('labsi').controller('AddPlaylistCtrl', ['PlaylistsService', funct
         playlistsService.addPlaylist(playlist).then(response => {
             self.playlists.push(response.data);
             _cleanPlaylistForm();
-        }).catch(error => {
-            console.log(error);
+        }).catch(() => {
+            self.responseError = 'Erro na comunicação com o servidor';
         });
     };
 
@@ -24,14 +24,14 @@ angular.module('labsi').controller('AddPlaylistCtrl', ['PlaylistsService', funct
             playlistsService.deletePlaylist(playlist).then(() => {
                 const removedPlaylistIdx = self.playlists.indexOf(playlist);
                 self.playlists.splice(removedPlaylistIdx, 1);
-            }).catch(error => {
-                console.log(error);
+            }).catch(() => {
+                self.responseError = 'Erro na comunicação com o servidor';
             });
         }
     };
 
     self.isNameAvailable = function (playlistName) {
-        if(self.playlists){
+        if (self.playlists) {
             const playlistsWithName = self.playlists.find(function (playlist) {
                 return playlist.name === playlistName;
             });

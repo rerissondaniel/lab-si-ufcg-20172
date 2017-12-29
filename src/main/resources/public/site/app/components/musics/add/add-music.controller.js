@@ -9,7 +9,7 @@ angular.module('labsi').controller('MusicsCtrl', ['AlbumsService', 'ArtistsServi
         albumService.addMusic(music, albumName).then(() => {
             _resetMusicForm();
         }).catch(() => {
-            console.log('Música não adicionada, mostrar msg');
+            self.responseError = 'Erro na comunicação com o servidor';
         });
     };
 

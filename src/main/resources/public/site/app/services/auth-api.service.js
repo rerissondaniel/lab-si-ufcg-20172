@@ -1,4 +1,4 @@
-angular.module('labsi').service('AuthService', ["$http", 'AuthTokenService', "config", function($http, authTokenService, config) {
+angular.module('labsi').service('AuthApiService', ["$http", 'AuthTokenService', "config", function($http, authTokenService, config) {
     const self = this;
 
     const authUrl = `${config.baseUrl}/login`;
@@ -9,7 +9,6 @@ angular.module('labsi').service('AuthService', ["$http", 'AuthTokenService', "co
                 authTokenService.setToken(result.headers('Authorization'));
                 resolve(result);
             }).catch((error) => {
-                console.log(error);
                 reject(error);
             });
         })

@@ -1,6 +1,6 @@
 <form name="vm.loginForm">
     <div class="form-group row">
-        <input class="form-control" placeholder="Email" type="username" name="username" id="username"
+        <input class="form-control" placeholder="Email" type="email" name="username" id="username"
                ng-model="vm.credentials.username"
                required/>
     </div>
@@ -20,6 +20,8 @@
             Email no formato inválido
         </div>
     </section>
+
+    <div ng-include="'app/components/response-error.html'"></div>
 
     <section ng-messages="vm.loginForm.password.$error"
              ng-show="vm.loginForm.password.$dirty">

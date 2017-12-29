@@ -5,7 +5,7 @@
                required/>
     </div>
     <div class="form-group row">
-        <input class="form-control" placeholder="Email" type="username" name="username" id="username"
+        <input class="form-control" placeholder="Email" type="email" name="username" id="username"
                ng-model="vm.user.username"
                required/>
     </div>
@@ -39,6 +39,8 @@
             A senha não pode ser vazia
         </div>
     </section>
+
+    <div ng-include="'app/components/response-error.html'"></div>
 
     <section class="row">
         <button class="btn btn-primary btn-block" ng-disabled="vm.userForm.$invalid" id="btn.add.artist"
