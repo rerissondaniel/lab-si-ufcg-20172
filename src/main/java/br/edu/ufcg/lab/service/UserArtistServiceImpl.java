@@ -7,6 +7,9 @@ import br.edu.ufcg.lab.repository.UserArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Service
 public class UserArtistServiceImpl implements UserArtistService {
     private ArtistService artistService;
@@ -18,6 +21,14 @@ public class UserArtistServiceImpl implements UserArtistService {
         this.artistService = artistService;
         this.userService = userService;
         this.repository = repository;
+    }
+
+    @Override
+    public List<UserArtist> getAll(String username) {
+        List<Artist> artists = artistService.getAll();
+        List<UserArtist> result = new LinkedList<>();
+        artists.forEach(elem -> result.add(this.get(elem.getName(), username)));
+        return result;
     }
 
     @Override

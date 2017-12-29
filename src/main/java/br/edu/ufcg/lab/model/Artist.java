@@ -35,12 +35,6 @@ public class Artist implements Serializable {
     @JoinTable(name = "tb_album_artist",
             joinColumns = @JoinColumn(name = "id_artist", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"))
-    private List<User> favouritedBy;
-
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "tb_album_artist",
-            joinColumns = @JoinColumn(name = "id_artist", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"))
     private List<Album> albuns;
 
     public String getName() {
@@ -95,11 +89,4 @@ public class Artist implements Serializable {
         return Objects.hash(getId(), getName(), getImageUrl(), getAlbuns());
     }
 
-    public List<User> getFavouritedBy() {
-        return favouritedBy;
-    }
-
-    public void setFavouritedBy(List<User> favouritedBy) {
-        this.favouritedBy = favouritedBy;
-    }
 }

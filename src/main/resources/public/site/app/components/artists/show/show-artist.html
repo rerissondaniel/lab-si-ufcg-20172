@@ -4,7 +4,7 @@
         <input type="text" readonly class="form-control col-sm-10" id="name" name="name"
                ng-value="vm.userArtist.artist.name"/>
     </div>
-    
+
     <div class="form-group row">
         <label for="image" class="col-sm-2 col-form-label"> Imagem: </label>
         <input type="text" readonly class="form-control col-sm-10" id="image" name="image"
@@ -16,7 +16,7 @@
         <input type="text" class="form-control col-sm-10" id="userArtist" name="userArtist"
                ng-model="vm.userArtist.rating"/>
     </div>
-    
+
     <div class="form-group row">
         <label for="lastListened" class="col-sm-2 col-form-label"> Última música ouvida: </label>
         <select id="lastListened" class="form-control col-sm-10" name="artist" ng-model="vm.userArtist.lastListened"
@@ -26,8 +26,9 @@
     </div>
 
     <div ng-include="'app/components/response-error.html'"></div>
+    <div ng-include="'app/components/response-success.html'"></div>
 
-    <button class="btn btn-primary btn-block float-right col-sm-3" ng-click="vm.updateUserArtist(vm.userArtist)">Salvar</button>
+    <button class="btn btn-primary btn-block float-right col-sm-3" ng-click="vm.update(vm.userArtist)">Salvar</button>
 
     <table class="table table-striped">
         <thead>

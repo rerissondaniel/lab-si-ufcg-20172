@@ -1,5 +1,5 @@
 <section class="container">
-    <div class="row"></div>
+    <div class="row">
         <input class="form-control" placeholder="Pesquisar Artista" type="text" name="name" id="name"
             ng-model="vm.searchCriteria"/>
     </div>
@@ -11,16 +11,16 @@
         <th>Favorito</th>
         </thead>
         <tbody>
-        <tr ng-repeat="artist in vm.artists | filter:{name : vm.searchCriteria}">
-            <td><a ui-sref="artist.show({name: artist.name})">{{artist.name}}</a></td>
+        <tr ng-repeat="userArtist in vm.userArtists | filter:{artist: {name : vm.searchCriteria}}">
+            <td><a ui-sref="artist.show({name: userArtist.artist.name})">{{userArtist.artist.name}}</a></td>
             <td>
-                <a href="{{artist.imageUrl}}" target="_blank" ng-if="artist.imageUrl">link</a>
-                <span ng-if="!artist.imageUrl">-</span>
+                <a href="{{userArtist.artist.imageUrl}}" target="_blank" ng-if="userArtist.artist.imageUrl">link</a>
+                <span ng-if="!userArtist.artist.imageUrl">-</span>
             </td>
             <td>
                 <input type="checkbox"
-                    ng-model="artist.favorite"
-                    ng-change="vm.confirmUpdate(artist)"/>
+                    ng-model="userArtist.favorite"
+                    ng-change="vm.confirmUpdate(userArtist)"/>
             </td>
         </tr>
         </tbody>

@@ -3,12 +3,10 @@ angular.module("labsi").service("UserArtistsService", ["$http", "config", functi
 
     const baseServiceUrl = config.baseUrl + "/user/artist";
 
-    self.getByName = (name) => {
-        return $http.get(`${baseServiceUrl}/${name}`);
-    };
+    self.getAll = () => $http.get(`${baseServiceUrl}`);
 
-    self.updateUserArtist = (userArtist) => {
-        return $http.put(`${baseServiceUrl}`, userArtist);
-    }
+    self.getByName = (name) => $http.get(`${baseServiceUrl}/${name}`);
+
+    self.update = (userArtist) => $http.put(`${baseServiceUrl}`, userArtist);
 
 }]);

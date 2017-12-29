@@ -19,6 +19,9 @@ public class UserArtist {
     @OneToOne(cascade = CascadeType.MERGE)
     private Artist artist;
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean favorite;
+
     @OneToOne
     private User user;
 
@@ -68,6 +71,14 @@ public class UserArtist {
 
     public void setLastListened(Music lastListened) {
         this.lastListened = lastListened;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 
     @Override

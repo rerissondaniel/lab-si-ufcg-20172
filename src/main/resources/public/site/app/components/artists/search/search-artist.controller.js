@@ -1,28 +1,28 @@
-angular.module("labsi").controller("SearchArtistCtrl", ["ArtistsService", function (artistsService) {
+angular.module("labsi").controller("SearchArtistCtrl", ["UserArtistsService", function (userArtistService) {
     const self = this;
 
-    artistsService.getArtists().then(response => {
-        self.artists = response.data;
+    userArtistService.getAll().then(response => {
+        self.userArtists = response.data;
     }).catch(() => {
         self.responseError = 'Erro na comunicação com o servidor';
     });
 
-    self.confirmUpdate = function (artist) {
+    self.confirmUpdate = function (userArtist) {
         let confirmResult;
-        if (artist.favorite) {
+        if (userArtist.artist.favorite) {
             confirmResult = confirm("Deseja realmente adicionar o artista aos favoritos?");
         } else {
             confirmResult = confirm("Deseja realmente remover o artista dos favoritos?");
         }
 
         if (confirmResult) {
-            _updateArtist(artist);
+            _updateArtist(userArtist);
         } else {
-            artist.favorite = !artist.favorite;
+            userArtist.artist.favorite = !userArtist.artist.favorite;
         }
     };
 
-    function _updateArtist(artist) {
-        artistsService.update(artist);
+    function _updateArtist(userArtist) {
+        userArtistService.update(userArtist);
     }
 }]);
